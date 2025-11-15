@@ -1,24 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { ProjectCards } from '@/components/react/ProjectCards'
+import { AnimatedRole } from '@/components/react/AnimatedRole'
 ---
 
 <Layout title="Kester's Portfolio" description="Full-stack developer portfolio showcasing modern web applications">
-  <main>
+  <main class="relative">
     <!-- Hero Section -->
-    <section class="py-20 md:py-32 lg:py-40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-sm font-medium text-gray-500 mb-6 tracking-wider uppercase">
-          Full-Stack Developer
-        </p>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold mb-8">
-          <span class="text-gray-500">Building Modern</span>
-          <br />
-          <span class="text-black dark:text-white">Web Experiences</span>
-        </h1>
-        <p class="text-xl text-gray-500 max-w-3xl leading-relaxed">
-          Portfolio showcase
-        </p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-start py-20">
+        <!-- Left: Hero Text -->
+        <div class="pt-20 md:max-w-md xl:max-w-none">
+          <p class="text-sm font-medium text-gray-500 mb-4 tracking-wider uppercase">
+            Name:
+          </p>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium mb-12">
+            <span class="text-black dark:text-white">Kester Yeo</span>
+          </h1>
+          <p class="text-3xl md:text-4xl lg:text-5xl text-gray-500 leading-relaxed">
+            I am a <br class="xl:hidden" /><AnimatedRole client:load />
+          </p>
+        </div>
+
+        <!-- Right: Spacer for Cards -->
+        <div class="hidden lg:block"></div>
       </div>
-    </section>
+    </div>
+
+    <!-- Projects Header -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-0 xl:py-12 relative">
+      <h2 class="text-4xl font-medium text-black dark:text-white">
+        Projects
+      </h2>
+    </div>
+
+    <!-- Placeholder container for grid cards (desktop only) -->
+    <div class="hidden md:block h-[720px] lg:h-[840px] xl:h-[825px]"></div>
+
+    <!-- View More Button (desktop only) -->
+    <div class="hidden md:flex justify-center pb-20">
+      <button class="w-16 h-16 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-medium text-sm hover:scale-100 transition-transform duration-300">
+        View More
+      </button>
+    </div>
+
+    <!-- Project Cards: Mobile below hero (< 768px), Tablet/Desktop overlapping (768px+) -->
+    <div class="md:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <ProjectCards client:load />
+    </div>
+    <div class="hidden md:block absolute top-0 left-0 right-0 pointer-events-none">
+      <ProjectCards client:load />
+    </div>
   </main>
 </Layout>
